@@ -1,15 +1,21 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom'
 
 
-const SearchBar = () =>{
+const SearchBar = ( ) =>{
+
+
+
+
 
     return (
 
         <nav className="main-nav">
             <ul>
-                <li><a href='#'>Cats</a></li>
-                <li><a href='#'>Dogs</a></li>
-                <li><a href='#'>Computers</a></li>
+                <li><NavLink to='cats'>Cats</NavLink></li>
+                <li><NavLink to='dogs'>dogs</NavLink></li>
+                <li><NavLink to='computers'>Computers</NavLink></li>
+
             </ul>
         </nav>
 

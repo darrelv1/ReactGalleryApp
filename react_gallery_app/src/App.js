@@ -1,48 +1,47 @@
 import './App.css';
 import SearchBar from './Components/SearchBar'
-import Gallery from './Components/Gallery'
+import Gallery from './Components/Photos/Gallery'
 import NavSelection from './Components/NavSelection'
-import axios from "axios";
+
 import {useState ,useEffect, useRef} from 'react'
-import { APIKEY } from './config'
+
+
+
+import React from 'react'
+import { Route, Routes, Navigation } from "react-router-dom";
+
 
 
 function App() {
 
-    const [pics, updatePics] = useState([])
-    const [search, updateSearch] = useState("")
-
-    const flickrURL =`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${APIKEY}&tags=${search}&per_page=499&format=json&nojsoncallback=1`
-
-    const buttonValue = useRef();
-
-    useEffect(()=> {
-        let activeFetch = true;
-        axios.get(flickrURL,
-        ).then((response) => {
-            if (activeFetch) {
-                const Picdata = response.data.photos.photo;
-                updatePics(Picdata)
-
-            }
-        })
-            .catch(error => "Error, failed to recieve JSON response from ${}")
-        console.log(buttonValue.current.value)
-        updateSearch(buttonValue.current.value)
-        return ()=> {activeFetch =false}
-    }, [ search])
+    const [pics, updatePics] = useState(
+        [
+            // {
+            //     farm: 66,
+            //     id: "52743739276",
+            //     secret: "44c2b8ea3e",
+            //     server: "65535",
+            //     title: "46th Annual Maple Syrup Festival"
+            // }
+        ]
+    )
+    const [search, updateSearch] = useState("cat")
 
 
   return (
-    <div >
-        <SearchBar />
-            <input type="type" name="TestingInput"  placeholder="testing" ref={ buttonValue }></input>
-        <NavSelection/>
+      <div>
+          <SearchBar  updateSearch={ updateSearch} />
+          <NavSelection />
+          <Routes>
+              <Route path="/" element={<h1>HELLO</h1>}/>
+              <Route path="search/:item" element={<Gallery pics={pics} updateSearch={ updateSearch} updatePics={updatePics} searchInput={search} />}/>
+              <Route path="cat" element={<Gallery/>}/>
+              <Route path="dog" element={<Gallery/>}/>
+              <Route path="computers" element={<Gallery photos={pics}/>}/>
+          </Routes>
 
-        <Gallery
-            photos={pics}
-        />
-    </div>
+          />
+      </div>
   );
 }
 

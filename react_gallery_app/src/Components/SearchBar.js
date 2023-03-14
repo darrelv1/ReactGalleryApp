@@ -1,12 +1,31 @@
-import React from 'react';
+import React, {useRef} from 'react';
+
+import { useNavigate } from 'react-router-dom'
 
 
-const SearchBar = () =>{
+
+
+const SearchBar = ({ updateSearch }) =>{
+    //useNavigate stores a functions
+        let navigate = useNavigate();
+
+       const handleSubmit = (e) => {
+        e.preventDefault();
+        updateSearch(inputElement.current.value);
+        console.log(`updated searchInput to: ${inputElement.current.value}`)
+        let path=`search/${inputElement.current.value}`
+        navigate(path)
+    }
+
+    const inputElement =useRef()
+
 
     return (
 
-        <form className="search-form">
-            <input type="search" name="search" placeholder="Search" required/>
+
+        <form className="search-form" onSubmit={handleSubmit}>
+            <input type="search" name="search" placeholder="Search" ref={inputElement} required/>
+
             <button type="submit" className="search-button">
                 <svg fill="#fff" height="24" viewBox="0 0 23 23" width="24" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -14,6 +33,7 @@ const SearchBar = () =>{
                     <path d="M0 0h24v24H0z" fill="none"/>
                 </svg>
             </button>
+
         </form>
 
     )
