@@ -28,12 +28,11 @@ const Gallery = ({pics, updatePics, searchInput, updateSearch}) => {
                 )
             }
         )
-        console.log(gallery)
-        console.log()
+
     }
 
     const UpdatingRender = () => {
-         setre(() => {
+        setre(() => {
                 return (
                     pics.map((x) => {
                         return (
@@ -49,32 +48,25 @@ const Gallery = ({pics, updatePics, searchInput, updateSearch}) => {
     }
 
     useEffect(() => {
-
         let isSubscribed = true;
         if (item !== undefined) {
             updateSearch(item)
+        } else {
+            updateSearch(searchInput)
         }
-        console.log(searchInput)
         axios.get(flickrURL,)
             .then((response) => {
                 if (isSubscribed) {
                     PicData = response.data.photos.photo;
                     updatePics(PicData);
                     pictures = PicData;
-                    console.log(PicData)
-                    // console.log(PicData)
-                    // console.log(`useState pics:  ${pics}`)
-                    // console.log(`PICS ${Object.keys(pics[0])}`)
-                    // console.log(`pics TYPE${pics.constructor.name}`)
-                    // console.log(`useState pics (Object Keys):  ${Object.keys(pics)}`)
                 }
-                })
-        console.log(flickrURL)
+            })
         UpdatingRender()
-
-        console.log(re)
-        return () => { isSubscribed = false}
-    }, [searchInput, ])
+        return () => {
+            isSubscribed = false
+        }
+    }, [searchInput])
 
 
     return (
