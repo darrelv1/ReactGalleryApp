@@ -10,7 +10,6 @@ const SearchBar = ({updateSearch}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         updateSearch(inputElement.current.value);
-        console.log(`updated searchInput to: ${inputElement.current.value}`)
         let path = `search/${inputElement.current.value}`
         navigate(path)
     }

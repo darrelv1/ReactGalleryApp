@@ -24,7 +24,8 @@ function App() {
                         updatePics={updatePics}
                         searchInput={search}
                     />
-                }/><Route path="search/:item" element={
+                }/>
+                <Route path="search/:item" element={
                 <Gallery
                     pics={pics}
                     updateSearch={updateSearch}
