@@ -2,34 +2,43 @@ import './App.css';
 import SearchBar from './Components/SearchBar'
 import Gallery from './Components/Photos/Gallery'
 import NavSelection from './Components/NavSelection'
+import NotFound from './Components/NotFound'
 import {useState, useEffect, useRef} from 'react'
 import React from 'react'
 import {Route, Routes, Navigation} from "react-router-dom";
 import axios from "axios";
 import {APIKEY} from "./config";
 
-
 function App() {
 
     const [pics, updatePics] = useState([])
     const [search, updateSearch] = useState("cat")
+    const [loading, setLoading ] = useState(true)
 
 
       const flickrURL = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${APIKEY}&tags=${search}&per_page=24&format=json&nojsoncallback=1`
 
       useEffect(() => {
         let isSubscribed = true;
+        setLoading(true);
         updateSearch(search)
         axios.get(flickrURL,)
             .then((response) => {
                 if (isSubscribed) {
                     const PicData = response.data.photos.photo;
-                    updatePics(PicData);
+                    updatePics(()=>{
+                        setLoading(false);
+                        return PicData});
+                    return PicData
                 }
+            })
+            .then((data)=> {
+
             })
 
         return () => {
             isSubscribed = false
+
         }
     }, [search])
 
@@ -50,6 +59,7 @@ function App() {
                         pics={pics}
                         updateSearch={updateSearch}
                         searchInput={search}
+                        loading={loading}
                     />
                 }/>
                 <Route path="cats" element={
@@ -73,9 +83,12 @@ function App() {
                         searchInput='computers'
                     />
                 }/>
+                <Route path="*" element={
+                    <NotFound/>
+                }/>
             </Routes>
 
-            />
+
         </div>
     );
 }

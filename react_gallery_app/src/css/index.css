@@ -25,6 +25,11 @@ a {
   margin: 0 auto 32px;
 }
 
+.center-div{
+  text-align: center;
+  border:5px solid;
+}
+
 .search-form button {
   outline: none;
   background-color: #438bbd;
