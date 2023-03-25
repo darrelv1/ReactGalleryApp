@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import Photo from "./photo"
 
@@ -9,11 +9,20 @@ const Gallery = ({   pics,
                  }) =>{
 
     let {item} = useParams();
-    if (item !== undefined) {
-        updateSearch(item)
+
+
+    useEffect(()=>{
+        console.log("this is in the useEffect")
+          if (item !== undefined) {
+      // console.log(item)
+         updateSearch(item)
     } else {
+        // console.log("would of been here")
         updateSearch(searchInput);
     }
+        }, [searchInput, item])
+
+
     return (
         <div className="photo-container">
             <h2>{searchInput} Results</h2>
@@ -26,7 +35,7 @@ const Gallery = ({   pics,
                     pics.map((x) => {
                         return (
                             <Photo
-                                key={Math.floor(Math.random()*10000)}
+                                key={x.id}
                                 id={x.id}
                                 server={x.server}
                                 secret={x.secret}

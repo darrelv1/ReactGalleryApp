@@ -26,6 +26,7 @@ function App() {
             .then((response) => {
                 if (isSubscribed) {
                     const PicData = response.data.photos.photo;
+                    console.log(PicData)
                     updatePics(()=>{
                         setLoading(false);
                         return PicData});
@@ -35,7 +36,7 @@ function App() {
             .then((data)=> {
 
             })
-
+        //
         return () => {
             isSubscribed = false
 

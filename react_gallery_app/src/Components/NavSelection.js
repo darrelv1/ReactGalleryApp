@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom'
+import {NavLink , Outlet} from 'react-router-dom'
 
 
 const SearchBar = () => {
@@ -12,6 +12,7 @@ const SearchBar = () => {
                 <li><NavLink to='computers'>Computers</NavLink></li>
 
             </ul>
+            <Outlet/>
         </nav>
     )
 

@@ -7,7 +7,7 @@ const Photo = ({id, server, secret}) => {
     return (
 
         <li>
-            <img src={source} alt=""/>
+            <img src={source} alt="" key={id}/>
         </li>
 
     )
