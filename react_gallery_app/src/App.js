@@ -44,7 +44,7 @@ function App() {
     }, [search])
 
     return (
-        <div>
+        <div className="container">
             <SearchBar updateSearch={updateSearch}/>
             <NavSelection/>
             <Routes>
