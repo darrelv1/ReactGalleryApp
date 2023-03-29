@@ -11,15 +11,16 @@ const Gallery = ({   pics,
     let {item} = useParams();
 
 
+
     useEffect(()=>{
-        console.log("this is in the useEffect")
+
           if (item !== undefined) {
-      // console.log(item)
          updateSearch(item)
     } else {
-        // console.log("would of been here")
-        updateSearch(searchInput);
+
+       updateSearch(searchInput);
     }
+
         }, [searchInput, item])
 
 
