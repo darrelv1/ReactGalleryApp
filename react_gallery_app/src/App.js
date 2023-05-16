@@ -3,9 +3,9 @@ import SearchBar from './Components/SearchBar'
 import Gallery from './Components/Photos/Gallery'
 import NavSelection from './Components/NavSelection'
 import NotFound from './Components/NotFound'
-import {useState, useEffect, useRef} from 'react'
+import {useState, useEffect,} from 'react'
 import React from 'react'
-import {Route, Routes, Navigation} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import axios from "axios";
 import {APIKEY} from "./config";
 
